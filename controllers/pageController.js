@@ -1,15 +1,15 @@
-exports.getIndexPage = async (req, res) => {
+exports.getIndexPage = (req, res) => {
     res.status(200).render('index');
 }
 
-exports.getServicesPage = async (req, res) => {
-    res.status(200).render('services');
-}
-
-exports.getAboutPage = async (req, res) => {
+exports.getAboutPage = (req, res) => {
     res.status(200).render('about');
 }
 
-exports.getContactPage = async (req, res) => {
+exports.getContactPage = (req, res) => {
     res.status(200).render('contact');
+}
+
+exports.getAdminPage = (req, res) => {
+    res.status(200).render('admin');
 }
