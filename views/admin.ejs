@@ -12,71 +12,195 @@
             </div>
         </header>
 
-        <!-- <div class="all-title-box">
-			<div class="container text-center">
-				<h1>DASHBOARD<span class="m_1">ADMIN</span></h1>
-			</div>
-		</div> -->
-
 		<div id="overviews" class="section wb">
 			<div class="container">
 
 				<!-- end row -->
 
+				<!-- Team -->
 				<div class="row mt-5">
-					<h2>Team</h2>
 					<table class="table">
 						<thead>
-						  <tr>
+							<tr>
+								<th>
+									<h2>Team</h2>
+								</th>
+								<th>
+									<div class="col-lg-12 text-center">
+										<button class="btn btn-lg btn-success rounded-0 text-white" href="#" data-bs-toggle="modal" data-bs-target="#addTeam">
+											<span>ADD NEW TEAM</span>
+										</button>
+									</div>
+								</th>
+							</tr>
+						</thead>
+					</table>
+					<table class="table">
+						<thead>
+						<tr>
 							<th scope="col">#ID</th>
 							<th scope="col">FirstName</th>
 							<th scope="col">LastName</th>
-							<th scope="col">Add</th>
+							<th scope="col">Job</th>
 							<th scope="col">Update</th>
 							<th scope="col">Delete</th>
-						  </tr>
+						</tr>
 						</thead>
 						<tbody>
-
-								<tr>
-									<th scope="row"></th>
-									<td></td>
-									<td></td>
-									<td>
-										<a href="#" onclick="return confirm('ARE YOU SURE ?')" class="btn btn-danger rounded-0 text-white">
+							<% for ( let i = 0; i < teams.length; i++ ) { %>
+							<tr>
+								<th scope="row"><%= teams[i]._id %></th>
+								<td><%= teams[i].firstName %></td>
+								<td><%= teams[i].lastName %></td>
+								<td><%= teams[i].job %></td>
+								<td>
+									<button class="btn btn-primary rounded-0 text-white" data-toggle="modal" 
+									data-target="#updateTeam">
 										<span>
-											DELETE
+											UPDATE
 										</span>
-										</a>
-									</td>
-								</tr>
-
+									</button>
+								</td>
+								<td>
+									<a href="#" onclick="return confirm('ARE YOU SURE ?')" class="btn btn-danger rounded-0 text-white">
+									<span>
+										DELETE
+									</span>
+									</a></td>
+							</tr>
+							<% } %>
 						</tbody>
-					  </table>
+					</table>
 					<!-- end col -->
 
 					<!-- end col -->
 				</div>
 
+				<!-- ADD Team Modal -->
+				<div class="modal fade" id="addTeam" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-body customer-box">
+
+								<!-- Tab panes -->
+								<div class="tab-content">
+									<div class="tab-pane active" id="Login">
+										<form method="POST" action="/admin/team" class="form-horizontal">
+											<!-- firstName -->
+											<div class="form-group">
+												<div class="col-sm-12">
+													<input type="text" name="firstName" class="form-control" placeholder="First Name"/>
+												</div>
+											</div>
+											<!-- lastName -->
+											<div class="form-group">
+												<div class="col-sm-12">
+													<input type="text" name="lastName" class="form-control" placeholder="Last Name"/>
+												</div>
+											</div>
+											<!-- job -->
+											<div class="form-group">
+												<div class="col-sm-12">
+													<input type="text" name="job" class="form-control" placeholder="Your Job"/>
+												</div>
+											</div>
+											<!-- github -->
+											<div class="form-group">
+												<div class="col-sm-12">
+													<input type="text" name="github" class="form-control" placeholder="Your Github"/>
+												</div>
+											</div>
+											<!-- medium -->
+											<div class="form-group">
+												<div class="col-sm-12">
+													<input type="text" name="medium" class="form-control" placeholder="Your Medium"/>
+												</div>
+											</div>
+											<!-- linkedin -->
+											<div class="form-group">
+												<div class="col-sm-12">
+													<input type="text" name="linkedin" class="form-control" placeholder="Your LinkedIn"/>
+												</div>
+											</div>
+											<!-- portfolio -->
+											<div class="form-group">
+												<div class="col-sm-12">
+													<select class="form-control" name="portfolio">
+		
+													<% for (let i=0; i< portfolios.length; i++) { %>
+														<option value="<%= portfolios[i]._id %>">
+															<%= portfolios[i].name %>
+														</option>
+													<% } %>
+													</select>
+												</div>
+											</div>
+											<!-- image -->
+											<div class="form-group">
+												<div class="col-sm-12">
+													<input type="text" name="image" class="form-control" placeholder="Your Image"/>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-10">
+													<button type="submit" class=" btn btn-light btn-radius btn-brd grd1 ">
+														Submit
+													</button>
+													<button type="submit" class=" btn btn-light btn-radius btn-brd grd1 " data-bs-dismiss="modal" aria-hidden="true">
+														Cancel
+													</button>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Portfolio -->
 				<div class="row mt-5">
-					<h2>Portfolio</h2>
 					<table class="table">
 						<thead>
-						  <tr>
+							<tr>
+								<th>
+									<h2>Portfolio</h2>
+								</th>
+								<th>
+									<div class="col-lg-12 text-center">
+										<button class="btn btn-lg btn-success rounded-0 text-white" href="#" data-bs-toggle="modal" data-bs-target="#addPortfolio">
+											<span>ADD NEW PORTFOLIO</span>
+										</button>
+									</div>
+								</th>
+							</tr>
+						</thead>
+					</table>
+					<table class="table">
+						<thead>
+						<tr>
 							<th scope="col">#ID</th>
 							<th scope="col">Name</th>
-							<th scope="col">Add</th>
+							<th scope="col">Client</th>
+							<th scope="col">Category</th>
+							<th scope="col">Update</th>
 							<th scope="col">Delete</th>
-						  </tr>
+						</tr>
 						</thead>
 						<tbody>
+							<% for ( let i = 0; i < portfolios.length; i++ ) { %>
 								<tr>
-									<th scope="row"></th>
-									<td></td>
+									<th scope="row"><%= portfolios[i]._id %></th>
+									<td><%= portfolios[i].name %></td>
+									<td><%= portfolios[i].client %></td>
+									<td><%= portfolios[i].category %></td>
 									<td>
-										<button class="btn btn-lg btn-warning rounded-0 text-white" href="#" data-toggle="modal" data-target="#addCategory">
-											<span>ADD</span>
-										</button>
+										<a href="#" onclick="return confirm('ARE YOU SURE ?')" class="btn btn-primary rounded-0 text-white">
+											<span>
+												UPDATE
+											</span>
+											</a>
 									</td>
 									<td>
 										<a href="#" onclick="return confirm('ARE YOU SURE ?')" class="btn btn-danger rounded-0 text-white">
@@ -86,60 +210,267 @@
 										</a>
 									</td>
 								</tr>
+							<% } %>
 						</tbody>
-					  </table>
+					</table>
 					<!-- end col -->
 
 					<!-- end col -->
 				</div>
+
+				<!-- ADD Portfolio Modal -->
+				<div class="modal fade" id="addPortfolio" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-body customer-box">
+								<!-- Tab panes -->
+								<div class="tab-content">
+									<div class="tab-pane active" id="Login">
+										<form method="POST" action="/admin/portfolio" class="form-horizontal">
+											<!-- name -->
+											<div class="form-group">
+												<div class="col-sm-12">
+													<input type="text" name="name" class="form-control" placeholder="Portfolio Name"/>
+												</div>
+											</div>
+											<!-- shortDesc -->
+											<div class="form-group">
+												<div class="col-sm-12">
+													<input type="text" name="shortDesc" class="form-control" placeholder="Short Description"/>
+												</div>
+											</div>
+											<!-- longDesc -->
+											<div class="form-group">
+												<div class="col-sm-12">
+													<textarea name="longDesc" rows="8" class="form-control" placeholder="Portfolio Description" required></textarea>
+												</div>
+											</div>
+											<!-- client -->
+											<div class="form-group">
+												<div class="col-sm-12">
+													<select class="form-control" name="client">
+		
+													<% for (let i=0; i< clients.length; i++) { %>
+														<option value="<%= clients[i]._id %>">
+															<%= clients[i].name %>
+														</option>
+													<% } %>
+													</select>
+												</div>
+											</div>
+											<!-- category -->
+											<div class="form-group">
+												<div class="col-sm-12">
+													<select class="form-control" name="category">
+													<% for (let i=0; i< categories.length; i++) { %>
+														<option value="<%= categories[i]._id %>">
+															<%= categories[i].name %>
+														</option>
+													<% } %>
+													</select>
+												</div>
+											</div>
+											<!-- image -->
+											<div class="form-group">
+												<div class="col-sm-12">
+													<input type="text" name="image" class="form-control" placeholder="Image"/>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-10">
+													<button type="submit" class=" btn btn-light btn-radius btn-brd grd1 ">
+														Submit
+													</button>
+													<button type="submit" class=" btn btn-light btn-radius btn-brd grd1 " data-bs-dismiss="modal" aria-hidden="true">
+														Cancel
+													</button>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 				<!-- end row -->
+
+				<!-- Category -->
+				<div class="row mt-5">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>
+									<h2>Category</h2>
+								</th>
+								<th>
+									<div class="col-lg-12 text-center">
+										<button class="btn btn-lg btn-success rounded-0 text-white" href="#" data-bs-toggle="modal" data-bs-target="#addCategory">
+											<span>ADD NEW CATEGORY</span>
+										</button>
+									</div>
+								</th>
+							</tr>
+						</thead>
+					</table>
+					<table class="table">
+						<thead>
+						<tr>
+							<th scope="col">#ID</th>
+							<th scope="col">Name</th>
+							<th scope="col">Update</th>
+							<th scope="col">Delete</th>
+						</tr>
+						</thead>
+						<tbody>
+							<% for ( let i = 0; i < categories.length; i++ ) { %>
+								<tr>
+									<th scope="row"><%= categories[i]._id %></th>
+									<td><%= categories[i].name %></td>
+									<td>
+										<a href="#" onclick="return confirm('ARE YOU SURE ?')" class="btn btn-primary rounded-0 text-white">
+											<span>
+												UPDATE
+											</span>
+											</a>
+									</td>
+									<td>
+										<a href="#" onclick="return confirm('ARE YOU SURE ?')" class="btn btn-danger rounded-0 text-white">
+										<span>
+											DELETE
+										</span>
+										</a>
+									</td>
+								</tr>
+							<% } %>
+						</tbody>
+					</table>
+					<!-- end col -->
+
+					<!-- end col -->
+				</div>
+
+				<!-- ADD Category Modal -->
+				<div class="modal fade" id="addCategory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-body customer-box">
+								<!-- Tab panes  -->
+								<div class="tab-content">
+									<div class="tab-pane active" id="Login">
+										<form method="POST" action="/admin/category" class="form-horizontal">
+											<div class="form-group">
+												<div class="col-sm-12">
+													<input type="text" name="name" class="form-control" placeholder="Category Name"/>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-10">
+													<button type="submit" class=" btn btn-light btn-radius btn-brd grd1 ">
+														Submit
+													</button>
+													<button type="submit" class=" btn btn-light btn-radius btn-brd grd1 " data-bs-dismiss="modal" aria-hidden="true">
+														Cancel
+													</button>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Client -->
+				<div class="row mt-5">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>
+									<h2>Client</h2>
+								</th>
+								<th>
+									<div class="col-lg-12 text-center">
+										<button class="btn btn-lg btn-success rounded-0 text-white" href="#" data-bs-toggle="modal" data-bs-target="#addClient">
+											<span>ADD NEW CLIENT</span>
+										</button>
+									</div>
+								</th>
+							</tr>
+						</thead>
+					</table>
+					<table class="table">
+						<thead>
+						<tr>
+							<th scope="col">#ID</th>
+							<th scope="col">Name</th>
+							<th scope="col">Update</th>
+							<th scope="col">Delete</th>
+						</tr>
+						</thead>
+						<tbody>
+							<% for ( let i = 0; i < clients.length; i++ ) { %>
+								<tr>
+									<th scope="row"><%= clients[i]._id %></th>
+									<td><%= clients[i].name %></td>
+									<td>
+										<a href="#" onclick="return confirm('ARE YOU SURE ?')" class="btn btn-primary rounded-0 text-white">
+											<span>
+												UPDATE
+											</span>
+											</a>
+									</td>
+									<td>
+										<a href="#" onclick="return confirm('ARE YOU SURE ?')" class="btn btn-danger rounded-0 text-white">
+										<span>
+											DELETE
+										</span>
+										</a>
+									</td>
+								</tr>
+							<% } %>
+						</tbody>
+					</table>
+					<!-- end col -->
+					<!-- end col -->
+				</div>
+
+				<!-- ADD Client Modal -->
+				<div class="modal fade" id="addClient" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+						<div class="modal-content">
+							<div class="modal-body customer-box">
+								<!-- Tab panes -->
+								<div class="tab-content">
+									<div class="tab-pane active" id="Login">
+										<form method="POST" action="/admin/client" class="form-horizontal">
+											<div class="form-group">
+													<div class="col-sm-12">
+														<input type="text" name="name" class="form-control" placeholder="Client Name"/>
+													</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-10">
+													<button type="submit" class=" btn btn-light btn-radius btn-brd grd1 ">
+														Submit
+													</button>
+													<button type="submit" class=" btn btn-light btn-radius btn-brd grd1 " data-bs-dismiss="modal" aria-hidden="true">
+														Cancel
+													</button>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
 			</div>
 			<!-- end container -->
 		</div>
 		<!-- end section -->
-		<!-- ADD Modal -->
-		<div class="modal fade" id="addCategory" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-			<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-				<div class="modal-content">
-					<div class="modal-body customer-box">
 
-						<!-- Tab panes -->
-						<div class="tab-content">
-
-							<div class="tab-pane active" id="Login">
-
-								<form method="POST" action="/categories" class="form-horizontal">
-
-									<div class="form-group">
-										<div class="col-sm-12">
-											<input type="text" name="name" class="form-control" placeholder="Category Name"/>
-										</div>
-									</div>
-
-									<div class="row">
-
-										<div class="col-sm-10">
-											<button type="submit" class=" btn btn-light btn-radius btn-brd grd1 ">
-												Submit
-											</button>
-
-											<button type="submit" class=" btn btn-light btn-radius btn-brd grd1 " data-dismiss="modal" aria-hidden="true">
-												Cancel
-											</button>
-
-										</div>
-
-									</div>
-
-								</form>
-
-							</div>
-
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</div>
-
-        <%- include('partials/_header') %>
+<%- include('partials/_footer') %>

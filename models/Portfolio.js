@@ -7,7 +7,7 @@ const PortfolioSchema = new Schema({
         type : String,
         required : true
     },
-    Sdesc : {
+    shortDesc : {
         type : String,
         required : true
     },
@@ -15,16 +15,25 @@ const PortfolioSchema = new Schema({
         type : String,
         required : true
     },
-    Ldesc : {
+    longDesc : {
         type: String,
         required : true
     },
+    createdDate : {
+        type : Date,
+        default : Date.now,
+        unique : true
+    },
     client : {
-        type : mongoose.Schema.Types.ObjectID,
+        type : mongoose.Schema.Types.ObjectId,
         ref : 'Client'
     },
     category : {
-        type : mongoose.Schema.Types.ObjectID,
+        type : mongoose.Schema.Types.ObjectId,
         ref : 'Category'
     }
 });
+
+const Portfolio = mongoose.model('Portfolio', PortfolioSchema);
+
+module.exports = Portfolio;

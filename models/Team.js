@@ -7,11 +7,11 @@ const TeamSchema = new Schema({
         type : String,
         required : true
     },
-    Fname : {
+    firstName : {
         type : String,
         required : true
     },
-    Lname : {
+    lastName : {
         type: String,
         required : true
     },
@@ -31,8 +31,17 @@ const TeamSchema = new Schema({
         type : String,
         required : false
     },
+    addedDate : {
+        type : Date,
+        default : Date.now,
+        unique : true
+    },
     portfolio : {
         type : mongoose.Schema.Types.ObjectID,
         ref : 'Portfolio'
     }
 });
+
+const Team = mongoose.model('Team', TeamSchema);
+
+module.exports = Team;
