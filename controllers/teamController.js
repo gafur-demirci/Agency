@@ -27,8 +27,25 @@ exports.createTeam = async (req, res) => {
     }
 };
 
-exports.updateTeam = (req,res) => {
-    pass
+exports.updateTeam = async (req,res) => {
+    try {
+        const team = await Team.findById( req.params.id );
+
+        team.firstName = req.body.firstName;
+        team.lastName = req.body.lastName;
+        team.job = req.body.job;
+        team.github = req.body.github;
+        team.medium = req.body.medium;
+        team.linkedin = req.body.linkedin;
+        team.portfolio = req.body.portfolio;
+        team.image = req.body.image;
+
+        team.save();
+
+        res.status(200).redirect('/admin');
+    } catch (error) {
+        console.log(error);
+    }
 };
 
 exports.deleteTeam = async (req,res) => {

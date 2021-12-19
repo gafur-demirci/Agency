@@ -25,8 +25,22 @@ exports.createPortfolio = async (req, res) => {
     }
 };
 
-exports.updatePortfolio = (req,res) => {
-    pass
+exports.updatePortfolio = async (req,res) => {
+    try {
+        const portfolio = await Portfolio.findById( req.params.id );
+        portfolio.name = req.body.name;
+        portfolio.shortDesc = req.body.shortDesc;
+        portfolio.longDesc = req.body.longDesc;
+        portfolio.client = req.body.client;
+        portfolio.category = req.body.category;
+        portfolio.image = req.body.image;
+
+        portfolio.save();
+
+        res.status(200).redirect('/admin');
+    } catch (error) {
+        console.log(error);
+    }
 };
 
 exports.deletePortfolio = async (req,res) => {

@@ -54,8 +54,8 @@
 								<td><%= teams[i].lastName %></td>
 								<td><%= teams[i].job %></td>
 								<td>
-									<button class="btn btn-primary rounded-0 text-white" data-toggle="modal" 
-									data-target="#updateTeam">
+									<button class="btn btn-primary rounded-0 text-white" data-bs-toggle="modal" 
+									data-bs-target="#updateTeam<%= teams[i]._id %>">
 										<span>
 											UPDATE
 										</span>
@@ -68,7 +68,99 @@
 									</span>
 									</a></td>
 							</tr>
+
+
+							<!-- UPDATE Modal -->
+							<div class="modal fade" id="updateTeam<%= teams[i]._id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+								<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+									<div class="modal-content">
+										<div class="modal-body customer-box">
+
+											<!-- Tab panes -->
+											<div class="tab-content">
+
+												<div class="tab-pane active" id="Login">
+
+													<form method="POST" action="/admin/team/<%= teams[i]._id %>?_method=PUT" class="form-horizontal">
+
+														<!-- firstName -->
+														<div class="form-group">
+															<div class="col-sm-12">
+																<input type="text" name="firstName" class="form-control" placeholder="First Name"/>
+															</div>
+														</div>
+														<!-- lastName -->
+														<div class="form-group">
+															<div class="col-sm-12">
+																<input type="text" name="lastName" class="form-control" placeholder="Last Name"/>
+															</div>
+														</div>
+														<!-- job -->
+														<div class="form-group">
+															<div class="col-sm-12">
+																<input type="text" name="job" class="form-control" placeholder="Your Job"/>
+															</div>
+														</div>
+														<!-- github -->
+														<div class="form-group">
+															<div class="col-sm-12">
+																<input type="text" name="github" class="form-control" placeholder="Your Github"/>
+															</div>
+														</div>
+														<!-- medium -->
+														<div class="form-group">
+															<div class="col-sm-12">
+																<input type="text" name="medium" class="form-control" placeholder="Your Medium"/>
+															</div>
+														</div>
+														<!-- linkedin -->
+														<div class="form-group">
+															<div class="col-sm-12">
+																<input type="text" name="linkedin" class="form-control" placeholder="Your LinkedIn"/>
+															</div>
+														</div>
+														<!-- portfolio -->
+														<div class="form-group">
+															<div class="col-sm-12">
+																<select class="form-control" name="portfolio">
+					
+																<% for (let i=0; i< portfolios.length; i++) { %>
+																	<option value="<%= portfolios[i]._id %>">
+																		<%= portfolios[i].name %>
+																	</option>
+																<% } %>
+																</select>
+															</div>
+														</div>
+														<!-- image -->
+														<div class="form-group">
+															<div class="col-sm-12">
+																<input type="text" name="image" class="form-control" placeholder="Your Image"/>
+															</div>
+														</div>
+														<div class="row">
+															<div class="col-sm-10">
+																<button type="submit" class=" btn btn-light btn-radius btn-brd grd1 ">
+																	Submit
+																</button>
+																<button type="submit" class=" btn btn-light btn-radius btn-brd grd1 " data-bs-dismiss="modal" aria-hidden="true">
+																	Cancel
+																</button>
+															</div>
+														</div>
+
+													</form>
+
+												</div>
+
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
 							<% } %>
+							<!-- end col -->
 						</tbody>
 					</table>
 					<!-- end col -->
@@ -196,11 +288,12 @@
 									<td><%= portfolios[i].client %></td>
 									<td><%= portfolios[i].category %></td>
 									<td>
-										<a href="#" onclick="return confirm('ARE YOU SURE ?')" class="btn btn-primary rounded-0 text-white">
+										<button class="btn btn-primary rounded-0 text-white" data-bs-toggle="modal" 
+										data-bs-target="#updatePortfolio<%= portfolios[i]._id %>">
 											<span>
 												UPDATE
 											</span>
-											</a>
+										</button>
 									</td>
 									<td>
 										<a href="/admin/portfolio/<%= portfolios[i]._id %>?_method=DELETE" onclick="return confirm('ARE YOU SURE ?')" class="btn btn-danger rounded-0 text-white">
@@ -210,7 +303,92 @@
 										</a>
 									</td>
 								</tr>
+
+							<!-- UPDATE Modal -->
+							<div class="modal fade" id="updatePortfolio<%= portfolios[i]._id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+								<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+									<div class="modal-content">
+										<div class="modal-body customer-box">
+
+											<!-- Tab panes -->
+											<div class="tab-content">
+
+												<div class="tab-pane active" id="Login">
+
+													<form method="POST" action="/admin/portfolio/<%= portfolios[i]._id %>?_method=PUT" class="form-horizontal">
+														<!-- name -->
+														<div class="form-group">
+															<div class="col-sm-12">
+																<input type="text" name="name" class="form-control" placeholder="Portfolio Name"/>
+															</div>
+														</div>
+														<!-- shortDesc -->
+														<div class="form-group">
+															<div class="col-sm-12">
+																<input type="text" name="shortDesc" class="form-control" placeholder="Short Description"/>
+															</div>
+														</div>
+														<!-- longDesc -->
+														<div class="form-group">
+															<div class="col-sm-12">
+																<textarea name="longDesc" rows="8" class="form-control" placeholder="Portfolio Description" required></textarea>
+															</div>
+														</div>
+														<!-- client -->
+														<div class="form-group">
+															<div class="col-sm-12">
+																<select class="form-control" name="client">
+					
+																<% for (let i=0; i< clients.length; i++) { %>
+																	<option value="<%= clients[i]._id %>">
+																		<%= clients[i].name %>
+																	</option>
+																<% } %>
+																</select>
+															</div>
+														</div>
+														<!-- category -->
+														<div class="form-group">
+															<div class="col-sm-12">
+																<select class="form-control" name="category">
+																<% for (let i=0; i< categories.length; i++) { %>
+																	<option value="<%= categories[i]._id %>">
+																		<%= categories[i].name %>
+																	</option>
+																<% } %>
+																</select>
+															</div>
+														</div>
+														<!-- image -->
+														<div class="form-group">
+															<div class="col-sm-12">
+																<input type="text" name="image" class="form-control" placeholder="Image"/>
+															</div>
+														</div>
+														<div class="row">
+															<div class="col-sm-10">
+																<button type="submit" class=" btn btn-light btn-radius btn-brd grd1 ">
+																	Submit
+																</button>
+																<button type="submit" class=" btn btn-light btn-radius btn-brd grd1 " data-bs-dismiss="modal" aria-hidden="true">
+																	Cancel
+																</button>
+															</div>
+														</div>
+
+													</form>
+
+												</div>
+
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
 							<% } %>
+							<!-- end col -->
+							
 						</tbody>
 					</table>
 					<!-- end col -->
@@ -328,11 +506,12 @@
 									<th scope="row"><%= categories[i]._id %></th>
 									<td><%= categories[i].name %></td>
 									<td>
-										<a href="#" onclick="return confirm('ARE YOU SURE ?')" class="btn btn-primary rounded-0 text-white">
+										<button class="btn btn-primary rounded-0 text-white" data-bs-toggle="modal" 
+										data-bs-target="#updateCategory<%= categories[i]._id %>">
 											<span>
 												UPDATE
 											</span>
-											</a>
+										</button>
 									</td>
 									<td>
 										<a href="/admin/category/<%= categories[i]._id %>?_method=DELETE" onclick="return confirm('ARE YOU SURE ?')" class="btn btn-danger rounded-0 text-white">
@@ -342,7 +521,46 @@
 										</a>
 									</td>
 								</tr>
+
+							<!-- UPDATE Modal -->
+							<div class="modal fade" id="updateCategory<%= categories[i]._id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+								<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+									<div class="modal-content">
+										<div class="modal-body customer-box">
+
+											<!-- Tab panes -->
+											<div class="tab-content">
+
+												<div class="tab-pane active" id="Login">
+
+													<form method="POST" action="/admin/category/<%= categories[i]._id %>?_method=PUT" class="form-horizontal">
+														<div class="form-group">
+															<div class="col-sm-12">
+																<input type="text" name="name" class="form-control" placeholder="Category Name"/>
+															</div>
+														</div>
+														<div class="row">
+															<div class="col-sm-10">
+																<button type="submit" class=" btn btn-light btn-radius btn-brd grd1 ">
+																	Submit
+																</button>
+																<button type="submit" class=" btn btn-light btn-radius btn-brd grd1 " data-bs-dismiss="modal" aria-hidden="true">
+																	Cancel
+																</button>
+															</div>
+														</div>
+													</form>
+
+												</div>
+
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
 							<% } %>
+							<!-- end col -->
 						</tbody>
 					</table>
 					<!-- end col -->
@@ -415,11 +633,12 @@
 									<th scope="row"><%= clients[i]._id %></th>
 									<td><%= clients[i].name %></td>
 									<td>
-										<a href="#" onclick="return confirm('ARE YOU SURE ?')" class="btn btn-primary rounded-0 text-white">
+										<button class="btn btn-primary rounded-0 text-white" data-bs-toggle="modal" 
+										data-bs-target="#updateClient<%= clients[i]._id %>">
 											<span>
 												UPDATE
 											</span>
-											</a>
+										</button>
 									</td>
 									<td>
 										<a href="/admin/client/<%= clients[i]._id %>?_method=DELETE" onclick="return confirm('ARE YOU SURE ?')" class="btn btn-danger rounded-0 text-white">
@@ -429,7 +648,48 @@
 										</a>
 									</td>
 								</tr>
+
+							<!-- UPDATE Modal -->
+							<div class="modal fade" id="updateClient<%= clients[i]._id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+								<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+									<div class="modal-content">
+										<div class="modal-body customer-box">
+
+											<!-- Tab panes -->
+											<div class="tab-content">
+
+												<div class="tab-pane active" id="Login">
+
+													<form method="POST" action="/admin/client/<%= clients[i]._id %>?_method=PUT" class="form-horizontal">
+
+														<div class="form-group">
+															<div class="col-sm-12">
+																<input type="text" name="name" class="form-control" placeholder="Client Name"/>
+															</div>
+														</div>
+														<div class="row">
+															<div class="col-sm-10">
+																<button type="submit" class=" btn btn-light btn-radius btn-brd grd1 ">
+																	Submit
+																</button>
+																<button type="submit" class=" btn btn-light btn-radius btn-brd grd1 " data-bs-dismiss="modal" aria-hidden="true">
+																	Cancel
+																</button>
+															</div>
+														</div>
+													</form>
+
+												</div>
+
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
 							<% } %>
+							<!-- end col -->
+
 						</tbody>
 					</table>
 					<!-- end col -->

@@ -20,8 +20,18 @@ exports.createCategory = async (req, res) => {
     }
 };
 
-exports.updateCategory = (req,res) => {
-    pass
+exports.updateCategory = async (req,res) => {
+    try {
+        const category = await Category.findById( req.params.id );
+        category.name = req.body.name;
+
+        category.save();
+
+        res.status(200).redirect('/admin');
+
+    } catch (error) {
+        console.log(error);
+    }
 };
 
 exports.deleteCategory = async (req,res) => {

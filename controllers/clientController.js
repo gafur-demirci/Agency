@@ -20,8 +20,18 @@ exports.createClient = async (req, res) => {
     }
 };
 
-exports.updateClient = (req,res) => {
-    pass
+exports.updateClient = async (req,res) => {
+    try {
+        const client = await Client.findById( req.params.id );
+
+        client.name = req.body.name;
+
+        client.save();
+
+        res.status(200).redirect('/admin');
+    } catch (error) {
+        console.log(error);
+    }
 };
 
 exports.deleteClient = async (req,res) => {
