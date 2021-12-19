@@ -24,6 +24,11 @@ exports.updateCategory = (req,res) => {
     pass
 };
 
-exports.deleteCategory = (req,res) => {
-    pass
+exports.deleteCategory = async (req,res) => {
+    try {
+        await Category.findByIdAndRemove( req.params.id );
+        res.status(200).redirect('/admin');
+    } catch (error) {
+        console.log(error);
+    }
 };

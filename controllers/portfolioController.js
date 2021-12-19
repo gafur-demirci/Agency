@@ -29,6 +29,11 @@ exports.updatePortfolio = (req,res) => {
     pass
 };
 
-exports.deletePortfolio = (req,res) => {
-    pass
+exports.deletePortfolio = async (req,res) => {
+    try {
+        await Portfolio.findByIdAndRemove( req.params.id );
+        res.status(200).redirect('/admin');
+    } catch (error) {
+        console.log(error);
+    }
 };

@@ -19,41 +19,84 @@
                 <h2 class="section-heading text-uppercase">Tell Us</h2>
                 <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
             </div>
-            <!-- * * * * * * * * * * * * * * *-->
+
+    <div id="contact" class="section wb">
+        <div class="container">
+            <div class="section-title text-center">
+                <h3>Need Help? Sure we are Online!</h3>
+                <p class="lead">Let us give you more details about the special offer website you want us. Please fill out the form below. <br>We have million of website owners who happy to work with us!</p>
+            </div><!-- end title -->
+
+            <div class="row">
+                <div class="offset-1 col-xl-10 col-md-10 col-sm-10">
+                    
+                    <div class="contact_form">
+                        <div id="message"></div>
+                        <form id="contactform" class="" action="/contact" name="contactform" method="POST">
+                            <div class="row row-fluid">
+
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <input type="text" name="name" id="first_name" class="form-control" placeholder="Your Name">
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <input type="email" name="email" id="email" class="form-control" placeholder="Your Email">
+                                </div>
+
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <!-- Phone number input-->
+                                    <input class="form-control" id="phone" type="tel" name= "phone" placeholder="Your Phone *" >
+                                </div>
+
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    <textarea class="form-control" name="message" id="comments" rows="6" placeholder="Give us more details.."></textarea>
+                                </div>
+                                <div class="text-center pd">
+                                    <button type="submit" value="SEND" id="submit" class="btn btn-light btn-radius btn-brd grd1 btn-block">SEND</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div><!-- end col -->
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+                <!-- * * * * * * * * * * * * * * *-->
             <!-- * * SB Forms Contact Form * *-->
             <!-- * * * * * * * * * * * * * * *-->
             <!-- This form is pre-integrated with SB Forms.-->
             <!-- To make this form functional, sign up at-->
             <!-- https://startbootstrap.com/solution/contact-forms-->
             <!-- to get an API token!-->
-            <form id="contactform" class="" action="/contact" name="contactform" method="POST" >
+            <!-- <form id="contactform" class="" action="/contact" name="contactform" method="POST" >
                 <div class="row align-items-stretch mb-5">
-                    <div class="col-md-6">
+                    <div class="col-md-6"> -->
 
-                        <div class="form-group">
-                            <!-- Name input-->
+                        <!-- Name input-->
+                        <!-- <div class="form-group">
                             <input class="form-control" id="name" type="text" name= "name" placeholder="Your Name *" >
-                        </div>
+                        </div> -->
                         
-                        <div class="form-group">
-                            <!-- Email address input-->
+                        <!-- Email address input-->
+                        <!-- <div class="form-group">
                             <input class="form-control" id="email" type="email" name= "email" placeholder="Your Email *" >
-                        </div>
+                        </div> -->
 
-                        <div class="form-group mb-md-0">
-                            <!-- Phone number input-->
+                        <!-- Phone number input-->
+                        <!-- <div class="form-group mb-md-0">
                             <input class="form-control" id="phone" type="tel" name= "phone" placeholder="Your Phone *" >
                         </div>
 
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group form-group-textarea mb-md-0">
-                            <!-- Message input-->
+                    <div class="col-md-6"> -->
+                        <!-- Message input-->
+                        <!-- <div class="form-group form-group-textarea mb-md-0">
                             <textarea class="form-control" id="message" name= "message" placeholder="Your Message *" ></textarea>
                         </div>
                     </div>
 
-                </div>
+                </div> -->
                 <!-- Submit success message-->
                 <!---->
                 <!-- This is what your users will see when the form-->
@@ -72,13 +115,13 @@
                 <!-- an error submitting the form-->
                 <!-- <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div> -->
                 <!-- Submit Button-->
-                <div class="text-center">
+                <!-- <div class="text-center">
                     <button class="btn btn-primary btn-xl text-uppercase disabled" id="submit" type="submit" value="SEND">Send Message
                     </button>
                 </div>
             </form>
         </div>
-    </section>
+    </section> -->
 
 <!-- Footer-->
 <%- include('partials/_footer') %>

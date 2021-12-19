@@ -24,6 +24,11 @@ exports.updateClient = (req,res) => {
     pass
 };
 
-exports.deleteClient = (req,res) => {
-    pass
+exports.deleteClient = async (req,res) => {
+    try {
+        await Client.findByIdAndRemove( req.params.id );
+        res.status(200).redirect('/admin');
+    } catch (error) {
+        console.log(error);
+    }
 };

@@ -31,6 +31,11 @@ exports.updateTeam = (req,res) => {
     pass
 };
 
-exports.deleteTeam = (req,res) => {
-    pass
+exports.deleteTeam = async (req,res) => {
+    try {
+        await Team.findByIdAndRemove( req.params.id );
+        res.status(200).redirect('/admin');
+    } catch (error) {
+        console.log(error);
+    }
 };
