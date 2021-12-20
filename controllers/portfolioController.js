@@ -7,6 +7,21 @@ exports.getAllPortfolio = async (req,res) => {
     });
 };
 
+exports.getPortfolio = async (req,res) => {
+    try {
+        const portfolios = await Portfolio.find();
+        const portfolio = await Portfolio.findById( req.params.id );
+
+        res.status(200).render('index', {
+            portfolio,
+            portfolios,
+        });
+    } catch (error) {
+        console.log(error);
+    }
+
+}
+
 exports.createPortfolio = async (req, res) => {
     try {
         const portfolio = await Portfolio.create({

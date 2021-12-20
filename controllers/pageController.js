@@ -4,8 +4,13 @@ const Client = require('../models/Client');
 const Portfolio = require('../models/Portfolio');
 const Team = require("../models/Team");
 
-exports.getIndexPage = (req, res) => {
-    res.status(200).render('index');
+exports.getIndexPage = async (req, res) => {
+    const portfolios = await Portfolio.find().populate('category').populate('client');
+    const teams = await Team.find().populate('portfolio');
+    res.status(200).render('index', {
+        portfolios,
+        teams
+    });
 }
 
 exports.getAboutPage = (req, res) => {
