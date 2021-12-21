@@ -9,12 +9,10 @@ exports.getAllPortfolio = async (req,res) => {
 
 exports.getPortfolio = async (req,res) => {
     try {
-        const portfolios = await Portfolio.find();
-        const portfolio = await Portfolio.findById( req.params.id );
 
-        res.status(200).render('index', {
+        const portfolio = await Portfolio.findById( req.params.id );
+        res.redirect(200, '/index', {
             portfolio,
-            portfolios,
         });
     } catch (error) {
         console.log(error);

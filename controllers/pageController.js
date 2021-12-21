@@ -5,8 +5,8 @@ const Portfolio = require('../models/Portfolio');
 const Team = require("../models/Team");
 
 exports.getIndexPage = async (req, res) => {
-    const portfolios = await Portfolio.find().populate('category').populate('client');
-    const teams = await Team.find().populate('portfolio');
+    const portfolios = await Portfolio.find();
+    const teams = await Team.find();
     res.status(200).render('index', {
         portfolios,
         teams

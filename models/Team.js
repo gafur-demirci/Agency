@@ -37,7 +37,7 @@ const TeamSchema = new Schema({
         unique : true
     },
     portfolio : {
-        type : mongoose.Schema.Types.ObjectID,
+        type : mongoose.Schema.Types.ObjectId,
         ref : 'Portfolio'
     }
 });
