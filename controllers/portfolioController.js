@@ -1,7 +1,7 @@
 const Portfolio = require('../models/Portfolio');
 
 exports.getAllPortfolio = async (req,res) => {
-    const portfolios = await Portfolio.find();
+    const portfolios = await Portfolio.find().populate('category');
     res.status(200).render('portfolios', {
         portfolios
     });
@@ -10,7 +10,7 @@ exports.getAllPortfolio = async (req,res) => {
 exports.getPortfolio = async (req,res) => {
     try {
 
-        const portfolio = await Portfolio.findById( req.params.id );
+        const portfolio = await Portfolio.findById( req.params.id ).populate('category');
         res.redirect(200, '/index', {
             portfolio,
         });
@@ -27,6 +27,7 @@ exports.createPortfolio = async (req, res) => {
             shortDesc : req.body.shortDesc,
             image : req.body.image,
             longDesc : req.body.longDesc,
+            team : req.body.team,
             client : req.body.client,
             category : req.body.category,
         });

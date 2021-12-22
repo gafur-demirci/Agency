@@ -5,8 +5,8 @@ const Portfolio = require('../models/Portfolio');
 const Team = require("../models/Team");
 
 exports.getIndexPage = async (req, res) => {
-    const portfolios = await Portfolio.find();
-    const teams = await Team.find();
+    const portfolios = await Portfolio.find().populate('category').populate('client');
+    const teams = await Team.find().populate('portfolio');
     res.status(200).render('index', {
         portfolios,
         teams
@@ -24,8 +24,8 @@ exports.getContactPage = (req, res) => {
 exports.getAdminPage = async (req, res) => {
     const categories = await Category.find();
     const clients = await Client.find();
-    const portfolios = await Portfolio.find();
-    const teams = await Team.find();
+    const portfolios = await Portfolio.find().populate('team').populate('category').populate('client');
+    const teams = await Team.find().populate('portfolio');
     res.status(200).render('admin', {
         categories,
         clients,

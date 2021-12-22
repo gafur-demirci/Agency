@@ -5,6 +5,7 @@ const PortfolioSchema = new Schema({
 
     name : {
         type : String,
+        unique : true,
         required : true
     },
     shortDesc : {
@@ -24,6 +25,10 @@ const PortfolioSchema = new Schema({
         default : Date.now,
         unique : true
     },
+    team : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : 'Team'
+    },
     client : {
         type : mongoose.Schema.Types.ObjectId,
         ref : 'Client'
@@ -32,6 +37,7 @@ const PortfolioSchema = new Schema({
         type : mongoose.Schema.Types.ObjectId,
         ref : 'Category'
     }
+
 });
 
 const Portfolio = mongoose.model('Portfolio', PortfolioSchema);

@@ -42,6 +42,7 @@
 							<th scope="col">FirstName</th>
 							<th scope="col">LastName</th>
 							<th scope="col">Job</th>
+							<th scope="col">Portfolio</th>
 							<th scope="col">Update</th>
 							<th scope="col">Delete</th>
 						</tr>
@@ -53,6 +54,7 @@
 								<td><%= teams[i].firstName %></td>
 								<td><%= teams[i].lastName %></td>
 								<td><%= teams[i].job %></td>
+								<td><%= teams[i].portfolio.name %></td>
 								<td>
 									<button class="btn btn-primary rounded-0 text-white" data-bs-toggle="modal" 
 									data-bs-target="#updateTeam<%= teams[i]._id %>">
@@ -70,7 +72,7 @@
 							</tr>
 
 
-							<!-- UPDATE Modal -->
+							<!-- UPDATE Team Modal -->
 							<div class="modal fade" id="updateTeam<%= teams[i]._id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 								<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 									<div class="modal-content">
@@ -274,6 +276,7 @@
 						<tr>
 							<th scope="col">#ID</th>
 							<th scope="col">Name</th>
+							<th scope="col">Team FirstName</th>
 							<th scope="col">Client</th>
 							<th scope="col">Category</th>
 							<th scope="col">Update</th>
@@ -285,8 +288,9 @@
 								<tr>
 									<th scope="row"><%= portfolios[i]._id %></th>
 									<td><%= portfolios[i].name %></td>
-									<td><%= portfolios[i].client %></td>
-									<td><%= portfolios[i].category %></td>
+									<td><%= portfolios[i].team.firstName %></td>
+									<td><%= portfolios[i].client.name %></td>
+									<td><%= portfolios[i].category.name %></td>
 									<td>
 										<button class="btn btn-primary rounded-0 text-white" data-bs-toggle="modal" 
 										data-bs-target="#updatePortfolio<%= portfolios[i]._id %>">
@@ -304,7 +308,7 @@
 									</td>
 								</tr>
 
-							<!-- UPDATE Modal -->
+							<!-- UPDATE Portfolio Modal -->
 							<div class="modal fade" id="updatePortfolio<%= portfolios[i]._id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 								<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
 									<div class="modal-content">
@@ -347,6 +351,21 @@
 																</select>
 															</div>
 														</div>
+
+														<!-- team -->
+														<div class="form-group">
+															<div class="col-sm-12">
+																<select class="form-control" name="team">
+					
+																<% for (let i=0; i< teams.length; i++) { %>
+																	<option value="<%= teams[i]._id %>">
+																		<%= teams[i].firstName %>
+																	</option>
+																<% } %>
+																</select>
+															</div>
+														</div>
+
 														<!-- category -->
 														<div class="form-group">
 															<div class="col-sm-12">
@@ -436,6 +455,21 @@
 													</select>
 												</div>
 											</div>
+
+											<!-- team -->
+											<div class="form-group">
+												<div class="col-sm-12">
+													<select class="form-control" name="team">
+		
+													<% for (let i=0; i< teams.length; i++) { %>
+														<option value="<%= teams[i]._id %>">
+															<%= teams[i].firstName %>
+														</option>
+													<% } %>
+													</select>
+												</div>
+											</div>
+
 											<!-- category -->
 											<div class="form-group">
 												<div class="col-sm-12">
