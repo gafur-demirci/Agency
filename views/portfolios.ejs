@@ -26,19 +26,22 @@
                     <div class="col-lg-4 col-sm-6 mb-4">
                         <!-- Portfolio item 1-->
                         <div class="portfolio-item">
-                            <a class="portfolio-link" data-bs-toggle="modal" data-bs-target="#<%= portfolios[i]._id %>" href="/portfolios/<%=portfolios[i]._id %>">
-                                <div class="portfolio-hover">
-                                    <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i></div>
+                            <a class="portfolio-link" data-bs-toggle="modal" data-bs-target="#<%= portfolios[i]._id %>" href="#<%= portfolios[i]._id %>">
+                            
+                            <div class="portfolio-hover">
+                                <div class="portfolio-hover-content"><i class="fas fa-plus fa-3x"></i>
                                 </div>
-                                <img class="img-fluid" src="/assets/img/portfolio/1.jpg" alt="..." />
+                            </div>
+                            <img class="img-fluid" src="/assets/img/portfolio/1.jpg" alt="..." />
                             </a>
                             <div class="portfolio-caption">
-                                <div class="portfolio-caption-heading"><%= portfolios[i].name %></div>
+                                <div class="portfolio-caption-heading"><%= portfolios[i].name %>
+                                </div>
                                 <div class="portfolio-caption-subheading text-muted"><%= portfolios[i].category.name %></div>
                             </div>
                         </div>
                     </div>
-
+                    <!-- Portfolio Modal -->
                     <div class="portfolio-modal modal fade" id="<%= portfolios[i]._id %>" tabindex="-1" role="dialog" aria-hidden="true">
                         <div class="modal-dialog modal-sm">
                             <div class="modal-content">

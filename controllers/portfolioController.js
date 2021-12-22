@@ -11,9 +11,10 @@ exports.getPortfolio = async (req,res) => {
     try {
 
         const portfolio = await Portfolio.findById( req.params.id ).populate('category');
-        res.redirect(200, '/index', {
+        res.redirect(200, '/portfolios', {
             portfolio,
         });
+        
     } catch (error) {
         console.log(error);
     }
