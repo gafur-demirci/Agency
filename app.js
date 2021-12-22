@@ -29,7 +29,7 @@ app.use(
 // ROUTE
 app.use('/', pageRoute);
 app.use('/admin', adminRoute);
-app.use('/portfolio', portfolioRoute);
+app.use('/portfolios', portfolioRoute);
 app.use('/team', teamRoute);
 
 const port = 3000;

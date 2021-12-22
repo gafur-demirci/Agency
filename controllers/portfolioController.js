@@ -2,7 +2,7 @@ const Portfolio = require('../models/Portfolio');
 
 exports.getAllPortfolio = async (req,res) => {
     const portfolios = await Portfolio.find();
-    res.status(200).render('portfolio', {
+    res.status(200).render('portfolios', {
         portfolios
     });
 };
