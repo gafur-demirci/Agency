@@ -13,7 +13,7 @@ exports.createClient = async (req, res) => {
             name : req.body.name,
         });
         // console.log(client);
-        res.status(201).redirect('/admin');
+        res.status(201).send('/admin');
     } catch (error) {
         console.log(error);
         // res.status(400).redirect('/admin');
@@ -28,7 +28,7 @@ exports.updateClient = async (req,res) => {
 
         client.save();
 
-        res.status(200).redirect('/admin');
+        res.status(200).send('/admin');
     } catch (error) {
         console.log(error);
     }
@@ -37,7 +37,7 @@ exports.updateClient = async (req,res) => {
 exports.deleteClient = async (req,res) => {
     try {
         await Client.findByIdAndRemove( req.params.id );
-        res.status(200).redirect('/admin');
+        res.status(200).send('/admin');
     } catch (error) {
         console.log(error);
     }
